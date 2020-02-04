@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Etapas do projeto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item detail="true" href="/etapa/:id" routerDirection="forward" button="true" *ngFor="let etapa of etapas | async">
+      <ion-label>
+        <h2>{{etapa.titulo}}</h2>
+        <p>{{etapa.descricao}}</p>
+      </ion-label>
+      <!-- <div class="etapa-item">
+        
+        <span class="titulo">{{etapa.titulo}}</span>
+        <span class="descricao">{{etapa.descricao}}</span>
+      </div> -->
+    </ion-item>
+
+    <!-- <ion-item>
+      <ion-thumbnail slot="start">
+        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==">
+      </ion-thumbnail>
+      <ion-label>
+        <h2>H2 Title Text</h2>
+        <p>Button on right</p>
+      </ion-label>
+      <ion-button fill="outline" slot="end">View</ion-button>
+    </ion-item> -->
+
+    <!-- <ion-item>
+      <ion-label>
+        Icon End
+      </ion-label>
+      <ion-icon name="information-circle" slot="end"></ion-icon>
+    </ion-item> -->
+  </ion-list>
+
+</ion-content>

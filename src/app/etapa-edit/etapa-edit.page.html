@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Detalhes da Etapa</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="salvar()">
+        <ion-icon slot="icon-only" name="save"></ion-icon>
+        
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]='etapaForm'>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-item>           
+            <ion-input type="text" placeholder="Título" formControlName="titulo" inputmode="text" autofocus="true">
+            </ion-input>
+            <ion-note slot="end" color="danger" *ngIf="titulo.dirty && titulo.hasError('required')">
+              Obrigatório
+            </ion-note>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+
+</ion-content>

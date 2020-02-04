@@ -2,8 +2,12 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
+  { path: '', redirectTo: 'etapa', pathMatch: 'full' },
+  { path: 'etapa', loadChildren: () => import('./etapa/etapa.module').then(m => m.EtapaPageModule) },
+  {
+    path: 'etapa/:id',
+    loadChildren: () => import('./etapa-edit/etapa-edit.module').then(m => m.EtapaEditPageModule)
+  },
 ];
 
 @NgModule({
