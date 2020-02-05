@@ -6,35 +6,23 @@
 
 <ion-content>
   <ion-list>
-    <ion-item detail="true" href="/etapa/:id" routerDirection="forward" button="true" *ngFor="let etapa of etapas | async">
-      <ion-label>
-        <h2>{{etapa.titulo}}</h2>
-        <p>{{etapa.descricao}}</p>
-      </ion-label>
-      <!-- <div class="etapa-item">
-        
-        <span class="titulo">{{etapa.titulo}}</span>
-        <span class="descricao">{{etapa.descricao}}</span>
-      </div> -->
-    </ion-item>
-
-    <!-- <ion-item>
-      <ion-thumbnail slot="start">
-        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==">
-      </ion-thumbnail>
-      <ion-label>
-        <h2>H2 Title Text</h2>
-        <p>Button on right</p>
-      </ion-label>
-      <ion-button fill="outline" slot="end">View</ion-button>
-    </ion-item> -->
-
-    <!-- <ion-item>
-      <ion-label>
-        Icon End
-      </ion-label>
-      <ion-icon name="information-circle" slot="end"></ion-icon>
-    </ion-item> -->
+    <ion-item-sliding *ngFor="let etapa of etapas | async">
+      <ion-item-options expandable side="end">
+        <ion-item-option expandable color="danger" (click)="excluir(etapa)">
+          Excluir Etapa
+        </ion-item-option>
+      </ion-item-options>
+      <ion-item detail="true" href="/etapa/{{etapa._id}}" routerDirection="forward" button="true">
+        <ion-label>
+          <h2>{{etapa.titulo}}</h2>
+          <p>{{etapa.descricao}}</p>
+        </ion-label>
+      </ion-item>
+    </ion-item-sliding>
   </ion-list>
-
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="adicionar()">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

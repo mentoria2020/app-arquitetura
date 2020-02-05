@@ -1,6 +1,6 @@
 export interface Etapa {
-    _id:number;
-    tituto:string;
+    _id:string;
+    titulo:string;
     descricao:string;
     concluido:number;
     detalhes:string[];
