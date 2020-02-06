@@ -12,7 +12,7 @@ import { OverlayService } from '../utils/overlay.service';
 })
 export class EtapaPage implements OnInit {
 
-  etapas: Observable<Etapa[]>;
+  etapas: Etapa[];
   constructor(private etapaService: EtapaService,
     private navCtrl: NavController,
     private overlayService: OverlayService) {
@@ -23,13 +23,22 @@ export class EtapaPage implements OnInit {
 
   }
 
+  doRefresh(event){
+    this.buscarEtapas(event);
+  }
+
   ionViewWillEnter() {
     this.buscarEtapas();
   }
 
-  buscarEtapas(){
+  buscarEtapas(callback?){
     //TODO: isso aqui deve estar gerando diversas conexoes, o ideal era cancelar o subscrive anterior antes e fazer um novo
-    this.etapas = this.etapaService.buscarEtapas();
+    this.etapaService.buscarEtapas().subscribe(etapas => {
+      this.etapas = etapas;
+      if (callback){
+        callback.target.complete();
+      }
+    });
   }
 
   adicionar() {

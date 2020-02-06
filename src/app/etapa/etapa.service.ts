@@ -26,14 +26,8 @@ export class EtapaService {
 
   public salvarEtapa(etapa: Etapa): Observable<Etapa> {
     if (etapa._id) {
-      return this.http.put<any>(`${api.base_url}/etapas/${etapa._id}`, etapa).pipe(map(result => {
-        let {ok} = result;
-        if (ok){
-          return etapa;
-        }else{
-          return null;
-        }
-      }));
+      // let json = JSON.stringify(etapa);
+      return this.http.put<Etapa>(`${api.base_url}/etapas/${etapa._id}`, etapa)
     } else {
       return this.http.post<Etapa>(`${api.base_url}/etapas`, etapa);
     }

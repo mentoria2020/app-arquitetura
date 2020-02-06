@@ -38,10 +38,13 @@
     </ion-item>
 
     <ion-item lines="none" *ngFor="let detalhe of etapa?.detalhes">
-      <span class="descricao">{{detalhe}}</span>
-      <ion-button slot="end" (click)="removerDetalhe(detalhe)">
+      <span class="descricao">{{detalhe.item}}</span>
+      <ion-button slot="start" (click)="removerDetalhe(detalhe)">
         <ion-icon slot="icon-only" name="trash"></ion-icon>
       </ion-button>
+
+      <ion-checkbox slot="end" [checked]="detalhe.checked" (ionChange)="marcarConcluido($event, detalhe)">
+      </ion-checkbox>
     </ion-item>
 
   </form>

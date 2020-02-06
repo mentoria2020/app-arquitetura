@@ -1,5 +1,7 @@
 {
   "name": "Arquitetura",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

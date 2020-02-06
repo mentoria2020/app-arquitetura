@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { Etapa } from '../etapa/etapa.model';
+import { Etapa, DetalheItem } from '../etapa/etapa.model';
 import { EtapaService } from '../etapa/etapa.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -54,6 +54,15 @@ export class EtapaEditPage implements OnInit {
     });
   }
 
+  marcarConcluido(event, detalhe:DetalheItem){
+    let vaDetalhe = this.etapa.detalhes.find(
+      d => (d._id === detalhe._id) || 
+           ((!d._id) && (d.item === detalhe.item)));
+    if (vaDetalhe) {
+      vaDetalhe.checked = event.detail.checked;
+    }
+  }
+
   async salvar() {    
     const loading = await this.overlayService.showModalMsg('Salvando...');
     try {
@@ -78,15 +87,23 @@ export class EtapaEditPage implements OnInit {
   }
 
   adicionarDetalhe() {
-    let vaDetalhe = this.edtDetalhe.nativeElement.value;
+    let descricao = this.edtDetalhe.nativeElement.value;
     if (!this.etapa.detalhes) {
       this.etapa.detalhes = [];
+    }
+
+    let vaDetalhe:DetalheItem = {
+      _id:undefined,
+      item:descricao,
+      checked:false
     }
     this.etapa.detalhes.push(vaDetalhe);
   }
 
-  removerDetalhe(ipDetalhe: string) {
-    let vaIndex = this.etapa.detalhes.findIndex(d => d === ipDetalhe);
+  removerDetalhe(ipDetalhe: DetalheItem) {
+    let vaIndex = this.etapa.detalhes.findIndex(
+      d => (d._id === ipDetalhe._id) || 
+           ((!d._id) && (d.item === ipDetalhe.item)));
     if (vaIndex >= 0) {
       this.etapa.detalhes.splice(vaIndex, 1);
     }
