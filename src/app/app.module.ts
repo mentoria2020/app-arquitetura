@@ -11,9 +11,10 @@ import { AppRoutingModule } from './app-routing.module';
 
 import {HttpClientModule} from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginPage } from './login/login.page';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, LoginPage],
   entryComponents: [],
   imports: [
     BrowserModule,    

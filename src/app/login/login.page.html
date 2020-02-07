@@ -1,0 +1,58 @@
+<ion-content class="ion-padding" color="cinza">
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col>
+
+        <h1 class="ion-text-center">
+
+          <img src="assets/logo.jpg" class="logo" alt="GerenciArq">
+          <!-- <ion-icon name="done-all" color="primary" class="icon-7em"></ion-icon> -->
+        </h1>
+
+
+        <div class="ion-text-center">
+          <span class="texto-reduzido">Logar</span>
+          <h3>GerenciArq</h3>
+        </div>
+        <form [formGroup]='loginForm' (submit)="logar()">
+          <ion-item>
+            <ion-icon name="mail" color="primary" slot="start"></ion-icon>
+            <ion-input type="email" placeholder="Email" formControlName="email" inputmode="email" autofocus="true">
+            </ion-input>
+            <ion-note slot="end" color="danger" *ngIf="email.dirty && email.hasError('required')">
+              Obrigatório
+            </ion-note>
+            <ion-note slot="end" color="danger" *ngIf="email.dirty && email.hasError('email')">
+              Email inválido
+            </ion-note>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="lock" color="primary" slot="start"></ion-icon>
+            <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+            <ion-note slot="end" color="danger" *ngIf="password.dirty && password.hasError('required')">
+              Obrigatório
+            </ion-note>
+          </ion-item>
+
+          <div class="grid">
+            <!-- <ion-button color="primary" expand="block" fill="outline" type="submit" [disabled]="loginForm.invalid"> -->
+            <ion-button color="primary" expand="block" fill="outline" type="submit">
+              Entrar
+            </ion-button>
+
+            <ion-button color="primary" expand="block" fill="outline" (click)="signup()">
+              Cadastrar
+            </ion-button>
+          </div>
+
+        </form>
+        <!-- <div class="centralizado rf-top-1">
+          <a href="#" class="primary">Forget your password?</a>
+        </div> -->
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

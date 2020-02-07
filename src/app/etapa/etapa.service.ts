@@ -4,20 +4,20 @@ import { map } from 'rxjs/operators';
 import { Etapa } from './etapa.model';
 import { HttpClient } from '@angular/common/http';
 import * as api from '../api.json';
+import { BaseService } from '../base.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class EtapaService {
-
-  constructor(private http: HttpClient) { }
+export class EtapaService extends BaseService {
 
   public buscarEtapas(): Observable<Etapa[]> {
-    return this.http.get<Etapa[]>(`${api.base_url}/etapas`);
+    return this.get('/etapas');    
   }
 
   public buscarEtapa(id: string): Observable<Etapa> {
-    return this.http.get<Etapa>(`${api.base_url}/etapas/${id}`);
+    return this.get(`/etapas/${id}`);
+    // return this.http.get<Etapa>(`${api.base_url}/etapas/${id}`);
   }
 
   public excluirEtapa(id:string):Observable<Etapa>{

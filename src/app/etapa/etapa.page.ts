@@ -42,7 +42,7 @@ export class EtapaPage implements OnInit {
   }
 
   adicionar() {
-    this.navCtrl.navigateForward('/etapa');
+    this.navCtrl.navigateForward('/main/etapa');
   }
 
   async excluir(etapa: Etapa) {

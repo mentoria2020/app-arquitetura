@@ -73,7 +73,7 @@ export class EtapaEditPage implements OnInit {
 
       let etapaSalva = await this.etapaService.salvarEtapa(this.etapa).toPromise();
       if (etapaSalva) {
-        this.navCtrl.navigateBack('/etapas');
+        this.navCtrl.navigateBack('/main/etapas');
       } else {
         this.overlayService.toast({ message: "Etapa não foi salva" });
       }

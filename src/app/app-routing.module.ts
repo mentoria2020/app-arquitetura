@@ -1,17 +1,22 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { LoginPage } from './login/login.page';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'etapas', pathMatch: 'full' },
-  { path: 'etapas', loadChildren: () => import('./etapa/etapa.module').then(m => m.EtapaPageModule) },
   {
-    path: 'etapa',
-    loadChildren: () => import('./etapa-edit/etapa-edit.module').then(m => m.EtapaEditPageModule)
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
   },
   {
-    path: 'etapa/:id',
-    loadChildren: () => import('./etapa-edit/etapa-edit.module').then(m => m.EtapaEditPageModule)
+    path: 'login',
+    component: LoginPage
+  },  
+  {
+    path: 'main',
+    loadChildren: () => import('./main/main.page.module').then( m => m.MainPageModule)
   },
+
 ];
 
 @NgModule({
