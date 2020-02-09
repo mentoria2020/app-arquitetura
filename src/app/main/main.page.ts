@@ -1,8 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
-import { Platform, NavController } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { Storage } from '@ionic/storage'
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'track-main',
@@ -16,13 +15,26 @@ export class MainPage {
       title: 'Etapas',
       url: '/main/etapas',
       icon: 'home'
-    },   
+    },
+    {
+      title: 'Logoff',
+      url: '',
+      icon: 'log-out'
+    },
   ];
 
-  constructor() {
-    
+  constructor(private storage: Storage,
+    private navCtrl: NavController) {
+
   }
 
-  
+  pageClick(p) {
+    if (p.title == 'Logoff') {
+      this.storage.remove('token');
+      this.navCtrl.navigateRoot('/login');
+    }
+  }
+
+
 }
 
