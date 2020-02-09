@@ -11,25 +11,25 @@ import { BaseService } from '../base.service';
 })
 export class EtapaService extends BaseService {
 
-  public buscarEtapas(): Observable<Etapa[]> {
-    return this.get('/etapas');    
+  public async buscarEtapas(): Promise<Observable<Etapa[]>> {
+    return await this.get('/etapas');    
   }
 
-  public buscarEtapa(id: string): Observable<Etapa> {
-    return this.get(`/etapas/${id}`);
+  public async buscarEtapa(id: string): Promise<Observable<Etapa>> {
+    return await this.get(`/etapas/${id}`);
     // return this.http.get<Etapa>(`${api.base_url}/etapas/${id}`);
   }
 
-  public excluirEtapa(id:string):Observable<Etapa>{
-    return this.http.delete<Etapa>(`${api.base_url}/etapas/${id}`);
+  public async excluirEtapa(id:string):Promise<Observable<Etapa>>{
+    return await this.delete(`/etapas/${id}`);
   }
 
-  public salvarEtapa(etapa: Etapa): Observable<Etapa> {
+  public async salvarEtapa(etapa: Etapa): Promise<Observable<Etapa>> {    
     if (etapa._id) {
       // let json = JSON.stringify(etapa);
-      return this.http.put<Etapa>(`${api.base_url}/etapas/${etapa._id}`, etapa)
+      return await this.put(`/etapas/${etapa._id}`, etapa)
     } else {
-      return this.http.post<Etapa>(`${api.base_url}/etapas`, etapa);
-    }
+      return await this.post('/etapas', etapa);
+    }    
   }
 }

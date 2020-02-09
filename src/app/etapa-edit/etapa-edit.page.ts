@@ -40,10 +40,11 @@ export class EtapaEditPage implements OnInit {
     });
 
 
-    this.route.paramMap.subscribe(params => {
+    this.route.paramMap.subscribe(async params => {
       let vaId = params.get('id');
       if (vaId) {
-        this.etapaService.buscarEtapa(vaId).subscribe(e => {
+        let ob = await this.etapaService.buscarEtapa(vaId);
+        ob.subscribe(e => {
           this.etapa = e;
           this.titulo.setValue(e.titulo);
           this.descricao.setValue(e.descricao);
@@ -71,7 +72,8 @@ export class EtapaEditPage implements OnInit {
       this.etapa.titulo = vaEtapa.titulo;
       this.etapa.descricao = vaEtapa.descricao;
 
-      let etapaSalva = await this.etapaService.salvarEtapa(this.etapa).toPromise();
+      let ob = await this.etapaService.salvarEtapa(this.etapa);
+      let etapaSalva = ob.toPromise();
       if (etapaSalva) {
         this.navCtrl.navigateBack('/main/etapas');
       } else {

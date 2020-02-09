@@ -23,22 +23,22 @@ export class EtapaPage implements OnInit {
 
   }
 
-  doRefresh(event){
+  doRefresh(event) {
     this.buscarEtapas(event);
   }
 
-  ionViewWillEnter() {
-    this.buscarEtapas();
+  async ionViewWillEnter() {
+    await this.buscarEtapas();
   }
 
-  buscarEtapas(callback?){
+  async buscarEtapas(callback?) {
     //TODO: isso aqui deve estar gerando diversas conexoes, o ideal era cancelar o subscrive anterior antes e fazer um novo
-    this.etapaService.buscarEtapas().subscribe(etapas => {
-      this.etapas = etapas;
-      if (callback){
-        callback.target.complete();
-      }
-    });
+    let ob = await this.etapaService.buscarEtapas();
+    let etapas = await ob.toPromise();
+    this.etapas = etapas;
+    if (callback) {
+      callback.target.complete();
+    };
   }
 
   adicionar() {
@@ -48,7 +48,8 @@ export class EtapaPage implements OnInit {
   async excluir(etapa: Etapa) {
     const loading = await this.overlayService.showModalMsg('Excluindo...');
     try {
-      let etapaExcluida = await this.etapaService.excluirEtapa(etapa._id).toPromise();
+      let ob = await this.etapaService.excluirEtapa(etapa._id);
+      let etapaExcluida = await ob.toPromise();
       if (etapaExcluida) {
         this.buscarEtapas();
       } else {
